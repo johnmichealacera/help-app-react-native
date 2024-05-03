@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Alert,
   Button,
@@ -14,23 +14,27 @@ import {
   View,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
-import Hospital from './components/Hospital';
-import Fire from './components/Fire';
-import Police from './components/Police';
+import Department from './components/Department';
 interface SelectedTabProps {
   selectedTab: string;
 }
 
 const SelectedTab: React.FC<SelectedTabProps> = ({selectedTab}) => {
+  const [resetKey, setResetKey] = useState(0);
+
+  useEffect(() => {
+    setResetKey(prevKey => prevKey + 1);
+  }, [selectedTab]);
+
   switch (selectedTab) {
     case 'A':
-      return <Hospital />;
+      return <Department key={resetKey} department="hospital" />;
     case 'B':
-      return <Fire />;
+      return <Department key={resetKey} department="fire" />;
     case 'C':
-      return <Police />;
+      return <Department key={resetKey} department="police" />;
     default:
-      return <Hospital />;
+      return <Department key={resetKey} department="hospital" />;
   }
 };
 
