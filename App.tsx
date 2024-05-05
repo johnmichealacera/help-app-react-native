@@ -1,20 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {
-  Alert,
   Button,
-  Modal,
-  Pressable,
   SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
-  TextInput,
   useColorScheme,
   View,
 } from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import Department from './components/Department';
+import CustomModal from './components/Modal';
 interface SelectedTabProps {
   selectedTab: string;
 }
@@ -45,7 +42,9 @@ function App(): React.JSX.Element {
   };
   const [modalVisible, setModalVisible] = useState(false);
   const [selectedTab, setSelectedTab] = useState('');
-  const [text, onChangeText] = React.useState('');
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   return (
     <SafeAreaView style={backgroundStyle}>
@@ -67,41 +66,14 @@ function App(): React.JSX.Element {
             <Button title="Police" onPress={() => setSelectedTab('C')} />
           </View>
           <SelectedTab selectedTab={selectedTab} />
-          <Modal
-            animationType="slide"
-            transparent={true}
-            visible={modalVisible}
-            onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
-              setModalVisible(!modalVisible);
-            }}>
-            <View style={styles.centeredView}>
-              <View style={styles.modalView}>
-                <TextInput
-                  style={styles.input}
-                  onChangeText={onChangeText}
-                  value={text}
-                />
-                <View style={styles.modalButtons}>
-                  <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}>
-                    <Text style={styles.textStyle}>Submit</Text>
-                  </Pressable>
-                  <Pressable
-                    style={[styles.button, styles.buttonClose]}
-                    onPress={() => setModalVisible(!modalVisible)}>
-                    <Text style={styles.textStyle}>Cancel</Text>
-                  </Pressable>
-                </View>
-              </View>
-            </View>
-          </Modal>
-          <Pressable
-            style={[styles.button, styles.buttonOpen]}
-            onPress={() => setModalVisible(true)}>
-            <Text style={styles.textStyle}>Do you have a report?</Text>
-          </Pressable>
+          <View
+            style={{backgroundColor: isDarkMode ? Colors.black : Colors.white}}>
+            <Button
+              title="Submit Report"
+              onPress={() => setModalVisible(true)}
+            />
+            <CustomModal modalVisible={modalVisible} closeModal={closeModal} />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
