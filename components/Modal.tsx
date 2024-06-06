@@ -7,6 +7,7 @@ import {
   TextInput,
   View,
   Modal,
+  Alert,
 } from 'react-native';
 import {Dropdown} from 'react-native-element-dropdown';
 
@@ -62,9 +63,11 @@ const CustomModal: React.FC<CustomModalProps> = ({
       setContact('');
       setDescription('');
       setSelectedDepartment('');
+      Alert.alert('Success', 'Report submitted successfully');
       closeModal();
     } catch (e) {
       console.error(e);
+      Alert.alert('Error', 'Failed to submit report');
     }
   };
 
@@ -85,6 +88,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
               onChangeText={onChangeName}
               value={name}
               placeholder="Enter your name"
+              placeholderTextColor="gray"
             />
           </View>
 
@@ -95,6 +99,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
               onChangeText={onChangeContact}
               value={contactNumber}
               placeholder="Enter your contact number"
+              placeholderTextColor="gray"
               keyboardType="phone-pad"
             />
           </View>
@@ -106,6 +111,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
               onChangeText={onChangeDescription}
               value={description}
               placeholder="Enter report description"
+              placeholderTextColor="gray"
               multiline={true}
               numberOfLines={4}
             />
@@ -166,7 +172,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#333',
     borderRadius: 20,
     padding: 35,
     alignItems: 'center',
@@ -184,6 +190,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
+    color: 'white',
   },
   input: {
     height: 40,
@@ -191,6 +198,7 @@ const styles = StyleSheet.create({
     borderColor: 'gray',
     borderWidth: 1,
     paddingHorizontal: 10,
+    color: 'white',
   },
   textArea: {
     height: 100,
@@ -199,6 +207,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingHorizontal: 10,
     paddingTop: 10,
+    color: 'white',
   },
   picker: {
     height: 40,
@@ -230,7 +239,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   container: {
-    backgroundColor: 'white',
     padding: 16,
     width: 300,
   },
@@ -240,32 +248,39 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderRadius: 8,
     paddingHorizontal: 8,
+    backgroundColor: '#555',
+    color: 'white',
   },
   icon: {
     marginRight: 5,
   },
   label: {
     position: 'absolute',
-    backgroundColor: 'white',
+    backgroundColor: '#333',
     left: 22,
     top: 8,
     zIndex: 999,
     paddingHorizontal: 8,
     fontSize: 14,
+    color: 'white',
   },
   placeholderStyle: {
     fontSize: 16,
+    color: 'gray',
   },
   selectedTextStyle: {
     fontSize: 16,
+    color: 'white',
   },
   iconStyle: {
     width: 20,
     height: 20,
+    color: 'white',
   },
   inputSearchStyle: {
     height: 40,
     fontSize: 16,
+    color: 'white',
   },
 });
 
