@@ -65,10 +65,17 @@ const CustomModal: React.FC<CustomModalProps> = ({
       setSelectedDepartment('');
       Alert.alert('Success', 'Report submitted successfully');
       closeModal();
-    } catch (e) {
-      console.error(e);
-      Alert.alert('Error', 'Failed to submit report');
+    } catch (e: any) {
+      Alert.alert('Error', `Failed to submit report: ${e.message}`);
     }
+  };
+
+  const renderDropdownItem = (item: any) => {
+    return (
+      <View style={styles.dropdownItem}>
+        <Text style={styles.dropdownItemText}>{item.label}</Text>
+      </View>
+    );
   };
 
   return (
@@ -139,6 +146,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
                 setSelectedDepartment(item.value);
                 setIsFocus(false);
               }}
+              renderItem={renderDropdownItem}
             />
           </View>
 
@@ -279,6 +287,17 @@ const styles = StyleSheet.create({
   },
   inputSearchStyle: {
     height: 40,
+    fontSize: 16,
+    color: 'white',
+    backgroundColor: '#444',
+  },
+  dropdownItem: {
+    padding: 10,
+    backgroundColor: '#333',
+    borderBottomColor: 'gray',
+    borderBottomWidth: 1,
+  },
+  dropdownItemText: {
     fontSize: 16,
     color: 'white',
   },
