@@ -30,6 +30,10 @@ const SelectedTab: React.FC<SelectedTabProps> = ({selectedTab}) => {
       return <Department key={resetKey} department="fire" />;
     case 'C':
       return <Department key={resetKey} department="police" />;
+    case 'D':
+      return <Department key={resetKey} department="MDRRMO" />;
+    case 'E':
+      return <Department key={resetKey} department="PCG" />;
     default:
       return <Department key={resetKey} department="hospital" />;
   }
@@ -64,6 +68,8 @@ function App(): React.JSX.Element {
             <Button title="Hospital" onPress={() => setSelectedTab('A')} />
             <Button title="Fire" onPress={() => setSelectedTab('B')} />
             <Button title="Police" onPress={() => setSelectedTab('C')} />
+            <Button title="MDRRMO" onPress={() => setSelectedTab('D')} />
+            <Button title="PCG" onPress={() => setSelectedTab('E')} />
           </View>
           <SelectedTab selectedTab={selectedTab} />
           <View

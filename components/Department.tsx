@@ -4,10 +4,13 @@ import axios from 'axios';
 import fireImage from '../public/fire.png';
 import policeImage from '../public/police.png';
 import hospitalImage from '../public/hospital.png';
+import mdrrmoImage from '../public/mdrrmo.png';
+import pcgImage from '../public/pcg.png';
 
 const Department = ({department}: {department: string}) => {
   const [data, setData] = useState<any[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,6 +19,7 @@ const Department = ({department}: {department: string}) => {
           `https://help-app-backend.onrender.com/announcements/${department}`,
         );
         setData(response.data);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -45,6 +49,10 @@ const Department = ({department}: {department: string}) => {
         return policeImage;
       case 'hospital':
         return hospitalImage;
+      case 'MDRRMO':
+        return mdrrmoImage;
+      case 'PCG':
+        return pcgImage;
       default:
         return null;
     }
@@ -58,16 +66,24 @@ const Department = ({department}: {department: string}) => {
           source={getImageForDepartment(department)}
         />
       </View>
-      <View style={styles.contentContainer}>
-        <Text style={styles.title}>{data[currentIndex]?.subject}</Text>
-        <Text style={styles.date}>{data[currentIndex]?.date}</Text>
-        <Text style={styles.description}>
-          {data[currentIndex]?.description}
-        </Text>
-        <View style={styles.buttonContainer}>
-          <Button onPress={onPrevious} title="Previous" />
-          <Button onPress={onNext} title="Next" />
-        </View>
+      <View style={styles.container}>
+        {data?.length > 0 || loading ? (
+          <View style={styles.contentContainer}>
+            <Text style={styles.title}>{data[currentIndex]?.subject}</Text>
+            <Text style={styles.date}>{data[currentIndex]?.date}</Text>
+            <Text style={styles.description}>
+              {data[currentIndex]?.description}
+            </Text>
+            <View style={styles.buttonContainer}>
+              <Button onPress={onPrevious} title="Previous" />
+              <Button onPress={onNext} title="Next" />
+            </View>
+          </View>
+        ) : (
+          <View>
+            <Text>No announcements yet</Text>
+          </View>
+        )}
       </View>
     </View>
   );

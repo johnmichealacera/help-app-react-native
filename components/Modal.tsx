@@ -40,6 +40,8 @@ const CustomModal: React.FC<CustomModalProps> = ({
     {label: 'Fire', value: 'fire'},
     {label: 'Hospital', value: 'hospital'},
     {label: 'Police', value: 'police'},
+    {label: 'MDRRMO', value: 'MDRRMO'},
+    {label: 'PCG', value: 'PCG'},
   ];
   const [selectedDepartment, setSelectedDepartment] = useState('');
   const [isFocus, setIsFocus] = useState(false);
@@ -127,6 +129,7 @@ const CustomModal: React.FC<CustomModalProps> = ({
           <View style={styles.container}>
             <Text style={styles.label}>Department:</Text>
             <Dropdown
+              // eslint-disable-next-line react-native/no-inline-styles
               style={[styles.dropdown, isFocus && {borderColor: 'blue'}]}
               placeholderStyle={styles.placeholderStyle}
               selectedTextStyle={styles.selectedTextStyle}
@@ -283,7 +286,6 @@ const styles = StyleSheet.create({
   iconStyle: {
     width: 20,
     height: 20,
-    color: 'white',
   },
   inputSearchStyle: {
     height: 40,
