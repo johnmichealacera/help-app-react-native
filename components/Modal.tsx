@@ -22,7 +22,9 @@ const CustomModal: React.FC<CustomModalProps> = ({
 }) => {
   const [name, setName] = useState('');
   const [contactNumber, setContact] = useState('');
-  const [description, setDescription] = useState('');
+  const [what, setWhat] = useState('');
+  const [when, setWhen] = useState('');
+  const [where, setWhere] = useState('');
 
   const onChangeName = (inputName: string) => {
     setName(inputName);
@@ -32,8 +34,16 @@ const CustomModal: React.FC<CustomModalProps> = ({
     setContact(inputContact);
   };
 
-  const onChangeDescription = (inputDescription: string) => {
-    setDescription(inputDescription);
+  const onChangeWhat = (inputWhat: string) => {
+    setWhat(inputWhat);
+  };
+
+  const onChangeWhen = (inputWhen: string) => {
+    setWhen(inputWhen);
+  };
+
+  const onChangeWhere = (inputWhere: string) => {
+    setWhere(inputWhere);
   };
 
   const data = [
@@ -48,12 +58,21 @@ const CustomModal: React.FC<CustomModalProps> = ({
 
   const handleSubmit = async () => {
     try {
-      if (!name || !description || !selectedDepartment || !contactNumber) {
+      if (
+        !name ||
+        !what ||
+        !when ||
+        !where ||
+        !selectedDepartment ||
+        !contactNumber
+      ) {
         throw new Error('Missing or empty required fields');
       }
       const reportData = {
         name,
-        description,
+        what,
+        when,
+        where,
         department: selectedDepartment,
         contactNumber,
       };
@@ -63,7 +82,9 @@ const CustomModal: React.FC<CustomModalProps> = ({
       );
       setName('');
       setContact('');
-      setDescription('');
+      setWhat('');
+      setWhen('');
+      setWhere('');
       setSelectedDepartment('');
       Alert.alert('Success', 'Report submitted successfully');
       closeModal();
@@ -114,15 +135,35 @@ const CustomModal: React.FC<CustomModalProps> = ({
           </View>
 
           <View style={styles.container}>
-            <Text style={styles.label}>Description:</Text>
+            <Text style={styles.label}>What:</Text>
             <TextInput
-              style={styles.textArea}
-              onChangeText={onChangeDescription}
-              value={description}
-              placeholder="Enter report description"
+              style={styles.input}
+              onChangeText={onChangeWhat}
+              value={what}
+              placeholder="Enter details of what is happening"
               placeholderTextColor="gray"
-              multiline={true}
-              numberOfLines={4}
+            />
+          </View>
+
+          <View style={styles.container}>
+            <Text style={styles.label}>When:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeWhen}
+              value={when}
+              placeholder="Enter date and time of happening"
+              placeholderTextColor="gray"
+            />
+          </View>
+
+          <View style={styles.container}>
+            <Text style={styles.label}>Where:</Text>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeWhere}
+              value={where}
+              placeholder="Enter the exact place where it happened"
+              placeholderTextColor="gray"
             />
           </View>
 
