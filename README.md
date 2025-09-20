@@ -1,79 +1,197 @@
-This is a new [**React Native**](https://reactnative.dev) project, bootstrapped using [`@react-native-community/cli`](https://github.com/react-native-community/cli).
+# Socorro Community Help App
 
-# Getting Started
+A React Native mobile application designed to help the Socorro community connect with emergency services and stay informed about important announcements from various departments.
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+## 📱 Overview
 
-## Step 1: Start the Metro Server
+The Socorro Community Help App serves as a centralized platform for community members to:
+- View announcements from emergency service departments
+- Submit incident reports to appropriate departments
+- Access contact information for various emergency services
 
-First, you will need to start **Metro**, the JavaScript _bundler_ that ships _with_ React Native.
+## 🏛️ Supported Departments
 
-To start Metro, run the following command from the _root_ of your React Native project:
+The app integrates with five key emergency service departments:
 
+- **🏥 Hospital** - Medical emergency services
+- **🚒 Fire Department** - Fire and rescue services  
+- **👮 Police** - Law enforcement services
+- **🏛️ MDRRMO** - Municipal Disaster Risk Reduction and Management Office
+- **⚓ PCG** - Philippine Coast Guard
+
+## ✨ Features
+
+### 📢 Department Announcements
+- Browse latest announcements from each department
+- Navigate through multiple announcements with Previous/Next buttons
+- View announcement details including subject, date, and description
+- Department-specific imagery for easy identification
+
+### 📝 Incident Reporting
+- Submit detailed incident reports through an intuitive form
+- Report includes:
+  - Personal information (name, contact number)
+  - Incident details (what, when, where)
+  - Department selection for appropriate routing
+- Real-time form validation
+- Success/error feedback
+
+### 🎨 User Interface
+- Clean, modern design with dark/light theme support
+- Responsive layout optimized for mobile devices
+- Intuitive navigation with tab-based department selection
+- Modal-based report submission for focused user experience
+
+## 🛠️ Technology Stack
+
+- **Framework**: React Native 0.73.5
+- **Language**: TypeScript 5.0.4
+- **HTTP Client**: Axios 1.6.7
+- **UI Components**: 
+  - React Native Elements Dropdown
+  - Native React Native components
+- **Backend Integration**: RESTful API integration
+- **Development Tools**:
+  - ESLint for code linting
+  - Prettier for code formatting
+  - Jest for testing
+  - Metro bundler
+
+## 📋 Prerequisites
+
+Before running this application, ensure you have:
+
+- **Node.js** >= 18 (as specified in package.json)
+- **React Native development environment** set up
+- **Android Studio** (for Android development)
+- **Xcode** (for iOS development, macOS only)
+- **Metro bundler** (included with React Native)
+
+## 🚀 Installation & Setup
+
+### 1. Clone the Repository
 ```bash
-# using npm
-npm start
+git clone <repository-url>
+cd help-app-react-native
+```
 
-# OR using Yarn
+### 2. Install Dependencies
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3. Start Metro Bundler
+```bash
+npm start
+# or
 yarn start
 ```
 
-## Step 2: Start your Application
+### 4. Run the Application
 
-Let Metro Bundler run in its _own_ terminal. Open a _new_ terminal from the _root_ of your React Native project. Run the following command to start your _Android_ or _iOS_ app:
-
-### For Android
-
+#### For Android
 ```bash
-# using npm
 npm run android
-
-# OR using Yarn
+# or
 yarn android
 ```
 
-### For iOS
-
+#### For iOS
 ```bash
-# using npm
 npm run ios
-
-# OR using Yarn
+# or
 yarn ios
 ```
 
-If everything is set up _correctly_, you should see your new app running in your _Android Emulator_ or _iOS Simulator_ shortly provided you have set up your emulator/simulator correctly.
+## 📱 Usage
 
-This is one way to run your app — you can also run it directly from within Android Studio and Xcode respectively.
+### Viewing Department Announcements
+1. Launch the app
+2. Select a department tab (Hospital, Fire, Police, MDRRMO, or PCG)
+3. View the current announcement with department-specific imagery
+4. Use Previous/Next buttons to navigate through multiple announcements
 
-## Step 3: Modifying your App
+### Submitting Incident Reports
+1. Tap the "Submit Report" button
+2. Fill out the report form with:
+   - Your name and contact number
+   - Detailed description of the incident (what, when, where)
+   - Select the appropriate department
+3. Tap "Submit" to send the report
+4. Receive confirmation of successful submission
 
-Now that you have successfully run the app, let's modify it.
+## 🔧 Development
 
-1. Open `App.tsx` in your text editor of choice and edit some lines.
-2. For **Android**: Press the <kbd>R</kbd> key twice or select **"Reload"** from the **Developer Menu** (<kbd>Ctrl</kbd> + <kbd>M</kbd> (on Window and Linux) or <kbd>Cmd ⌘</kbd> + <kbd>M</kbd> (on macOS)) to see your changes!
+### Project Structure
+```
+help-app-react-native/
+├── components/
+│   ├── Department.tsx      # Department announcement display
+│   └── Modal.tsx          # Report submission modal
+├── public/                # Department images
+├── App.tsx               # Main application component
+├── package.json          # Dependencies and scripts
+└── README.md            # This file
+```
 
-   For **iOS**: Hit <kbd>Cmd ⌘</kbd> + <kbd>R</kbd> in your iOS Simulator to reload the app and see your changes!
+### Available Scripts
+- `npm start` - Start Metro bundler
+- `npm run android` - Run on Android device/emulator
+- `npm run ios` - Run on iOS device/simulator
+- `npm run lint` - Run ESLint
+- `npm test` - Run Jest tests
 
-## Congratulations! :tada:
+### Backend Integration
+The app connects to a backend API hosted at `https://help-app-backend.onrender.com`:
+- **GET** `/announcements/{department}` - Fetch department announcements
+- **POST** `/reports` - Submit incident reports
 
-You've successfully run and modified your React Native App. :partying_face:
+## 🧪 Testing
 
-### Now what?
+Run the test suite:
+```bash
+npm test
+```
 
-- If you want to add this new React Native code to an existing application, check out the [Integration guide](https://reactnative.dev/docs/integration-with-existing-apps).
-- If you're curious to learn more about React Native, check out the [Introduction to React Native](https://reactnative.dev/docs/getting-started).
+## 📝 Contributing
 
-# Troubleshooting
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-If you can't get this to work, see the [Troubleshooting](https://reactnative.dev/docs/troubleshooting) page.
+## 🐛 Troubleshooting
 
-# Learn More
+### Common Issues
 
-To learn more about React Native, take a look at the following resources:
+**Metro bundler issues:**
+```bash
+npx react-native start --reset-cache
+```
 
-- [React Native Website](https://reactnative.dev) - learn more about React Native.
-- [Getting Started](https://reactnative.dev/docs/environment-setup) - an **overview** of React Native and how setup your environment.
-- [Learn the Basics](https://reactnative.dev/docs/getting-started) - a **guided tour** of the React Native **basics**.
-- [Blog](https://reactnative.dev/blog) - read the latest official React Native **Blog** posts.
-- [`@facebook/react-native`](https://github.com/facebook/react-native) - the Open Source; GitHub **repository** for React Native.
+**Android build issues:**
+- Ensure Android SDK is properly configured
+- Check that emulator is running or device is connected
+
+**iOS build issues:**
+- Ensure Xcode is installed and updated
+- Run `cd ios && pod install` if using CocoaPods
+
+### Getting Help
+- Check the [React Native documentation](https://reactnative.dev/docs/getting-started)
+- Review the [troubleshooting guide](https://reactnative.dev/docs/troubleshooting)
+
+## 📄 License
+
+This project is private and proprietary to the Socorro Community Help App initiative.
+
+## 🤝 Support
+
+For support and questions regarding this application, please contact the development team or create an issue in the repository.
+
+---
+
+**Built with ❤️ for the Socorro Community**
